@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-nuxt:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,9 +38,9 @@ jobs:
           # Days before delete
           retention-days: 1
 
-  build-docker-spa:
+  build-docker-nuxt:
 
-    needs: [build-spa]
+    needs: [build-nuxt]
     runs-on: ubuntu-latest
 
     permissions:
