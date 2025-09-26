@@ -8,6 +8,10 @@ on:
 jobs:
   build-nuxt:
     runs-on: ubuntu-latest
+    
+    env:
+      working-directory: ./src/
+
 
     steps:
       - name: Checkout repository
@@ -19,14 +23,12 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: |
-          cd src
-          npm ci
+        run: npm ci
+        working-directory: ${{env.working-directory}}
 
       - name: Build Nuxt
-        run: |
-          cd src
-          npx nuxi build
+        run: npx nuxi build
+        working-directory: ${{env.working-directory}}
           
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -34,7 +36,7 @@ jobs:
           # Artifact name
           name: nuxt
           # Directory containing files to upload
-          path: src/.output
+          path: .output
           # Days before delete
           retention-days: 1
 
