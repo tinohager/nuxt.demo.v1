@@ -30,13 +30,16 @@ jobs:
         run: npx nuxi build
         working-directory: ${{env.working-directory}}
           
+      - name: List .output
+        run: ls -R ${{env.working-directory}}/.output
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           # Artifact name
           name: nuxt
           # Directory containing files to upload
-          path: .output
+          path: ${{env.working-directory}}/.output
           # Days before delete
           retention-days: 1
 
