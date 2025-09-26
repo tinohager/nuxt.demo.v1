@@ -36,9 +36,10 @@ jobs:
           # Artifact name
           name: nuxt
           # Directory containing files to upload
-          path: ${{env.working-directory}}/.output/
+          path: .output/
           # Days before delete
           retention-days: 1
+          if-no-files-found: error
 
   build-docker-nuxt:
 
