@@ -29,12 +29,6 @@ jobs:
       - name: Build Nuxt
         run: npx nuxi build
         working-directory: ${{env.working-directory}}
-
-      - name: Install tree
-        run: sudo apt-get update && sudo apt-get install -y tree
-     
-      - name: Display folder structure
-        run: tree -L 7
           
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -42,10 +36,12 @@ jobs:
           # Artifact name
           name: nuxt
           # Directory containing files to upload
-          path: .output/
+          path: ${{env.working-directory}}/.output/
           # Days before delete
           retention-days: 1
+          include-hidden-files: true
           if-no-files-found: error
+
 
   build-docker-nuxt:
 
